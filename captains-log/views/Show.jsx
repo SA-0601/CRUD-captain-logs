@@ -15,7 +15,8 @@ function Show(props){
                 : "False"
             }
             <br/>
-            Created at: {Date(log.createdAt)}
+            
+            Created at: {log.createdAt.toString()}
             <br/>
             <a href='/logs'>Go Back</a>
         </div>

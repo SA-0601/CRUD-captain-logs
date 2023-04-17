@@ -46,9 +46,36 @@ app.post('/logs', (req, res) =>{
     // res.send(req.body);
     Logs.create(req.body, (error, createdLog) => {
         // res.send(req.body);
-        res.redirect('/logs');
+        res.redirect(`/logs/${createdLog._id}`);
     })
 })
+
+//* Return the edit form 
+app.get('/logs/:id/edit', (req, res) => {
+    Logs.findById(req.params.id, (error, foundLog) => {
+        if(!error) {
+            res.render('Edit', {log:foundLog})
+        }   else {
+                res.send({msg: error.message})
+            }
+    })
+})
+
+//* Handle the edit data
+app.put('/logs/:id', (req, res) => {
+    // res.send(req.body);
+    if(req.body.shipIsBroken === "on") {
+        req.body.shipIsBroken = true;
+    }   else {
+        req.body.shipIsBroken = false;
+        }
+
+    Logs.findByIdAndUpdate(req.params.id, req.body, (error, updatedLog) => {
+        // res.send(updatedLog);
+        res.redirect(`/logs/${req.params.id}`);
+    })
+})
+
 
 app.get('/logs/seed', (req, res)=>{
     Logs.create([
@@ -100,6 +127,19 @@ app.get('/logs/:id', (req, res) => {
     Logs.findById(req.params.id, (error, foundLog) => {
         res.render('Show', {log: foundLog})
     })
+})
+
+//!Delete Log
+app.delete('/logs/:id', (req, res) => {
+    Logs.findByIdAndRemove(req.params.id, (error, deletedLog) => {
+        //res.send(deletedLog);
+        res.redirect('/logs');
+    })
+})
+
+//
+app.get('*', (req, res) => {
+    res.render('404');
 })
 
 
