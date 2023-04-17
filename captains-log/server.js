@@ -53,32 +53,32 @@ app.post('/logs', (req, res) =>{
 app.get('/logs/seed', (req, res)=>{
     Logs.create([
         {
-            name:'Cable Ship',
+            title:'Cable Ship',
             entry:'1000 tons of electronics',
             shipIsBroken:true
         },
         {
-            name:'Fishing Vessel',
+            title:'Fishing Vessel',
             entry:'500 barrels of crude oil',
             shipIsBroken:false
         },
         {
-            name:'Gas Turbine Ship',
+            title:'Gas Turbine Ship',
             entry:'2000 tons of steel',
             shipIsBroken:false
         },
         {
-            name:'Lifeboat',
+            title:'Lifeboat',
             entry:'1000 tons of clothes',
             shipIsBroken:true
         },
         {
-            name:'Motor Tanker',
+            title:'Motor Tanker',
             entry:'1000 tons of nothing',
             shipIsBroken:false
         },
         {
-            name:'Nuclear Ship',
+            title:'Nuclear Ship',
             entry:'500 barrels of petroleum',
             shipIsBroken:true
         }
